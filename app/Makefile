@@ -1,14 +1,17 @@
-PROJECT = awesomesauce
+PROJECT = cps_app
 BUILD_DIR = bin
 
-SHARED_DIR = ../my-common-code
-CFILES = my-project.c
+SHARED_DIR = ../common-code
+CFILES = main.c
 CFILES += api.c
 AFILES += api-asm.S
 
 # TODO - you will need to edit these two lines!
 DEVICE=stm32f407vgt6
-OOCD_FILE = board/stm32f4discovery.cfg
+#OOCD_FILE = board/stm32f4discovery.cfg
+# Flash the firmware by st-link
+OOCD_INTERFACE = stlink-v2
+OOCD_TARGET = stm32f4x
 
 # You shouldn't have to edit anything below here.
 VPATH += $(SHARED_DIR)
