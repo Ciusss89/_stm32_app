@@ -1,7 +1,5 @@
 #include "module_uart.h"
 
-#include <stdio.h>
-
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/usart.h>
@@ -71,4 +69,49 @@ void uart_putmessage(const char *string)
     _uart_puts("\r\n");
 
     return;
+}
+
+static ssize_t _iord(void *_cookie, char *_buf, size_t _n);
+static ssize_t _iowr(void *_cookie, const char *_buf, size_t _n);
+
+static ssize_t _iord(void *_cookie, char *_buf, size_t _n)
+{
+	/* dont support reading now */
+	(void)_cookie;
+	(void)_buf;
+	(void)_n;
+	return 0;
+}
+
+static ssize_t _iowr(void *_cookie, const char *_buf, size_t _n)
+{
+	uint32_t dev = (uint32_t)_cookie;
+
+	int written = 0;
+	while (_n-- > 0) {
+		usart_send_blocking(dev, *_buf++);
+		written++;
+	};
+	return written;
+}
+
+/* Return the fd of console
+ *
+ */
+FILE *uart_fd(void)
+{
+	_uart_clock_setup();
+	_uart_gpio_setup();
+	_uart_setup();
+
+	cookie_io_functions_t stub = { _iord, _iowr, NULL, NULL };
+
+	FILE *fd = fopencookie((void *)USART2, "rw+", stub);
+	if(fd) {
+		/* Do not buffer the serial line */
+		setvbuf(fd, NULL, _IONBF, 0);
+		return fd;
+	}	
+
+	return NULL;
 }
