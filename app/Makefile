@@ -3,7 +3,7 @@ BUILD_DIR = bin
 
 SHARED_DIR = ../common-code
 CFILES = main.c
-CFILES += api.c
+CFILES += api.c module_uart.c
 AFILES += api-asm.S
 
 # TODO - you will need to edit these two lines!
