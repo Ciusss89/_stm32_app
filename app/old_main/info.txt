@@ -1,0 +1,12 @@
+## Ex
+
+### HOW to use the example:
+1.  cp <name>.c ../main.c -v
+2.  cd ..
+3.  make
+
+### Examples:
+
+1. ex_led_blink_uart_prin.c
+
+   Blink led and print a message on the console.
