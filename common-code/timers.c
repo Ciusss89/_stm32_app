@@ -1,4 +1,5 @@
 #include "timers.h"
+#include "tools.h"
 
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/timer.h>
@@ -32,7 +33,7 @@ void tim_setup(int timer)
 			break;
 
 		default:
-			abort();
+			_system_panic();
 			break;
 	}
 }
@@ -75,7 +76,7 @@ void tim_set_timing(int timer, uint16_t prescaler,
 			break;
 
 		default:
-			abort();
+			_system_panic();
 			break;
 	}
 }
@@ -100,7 +101,7 @@ void tim_reset(int timer)
 			break;
 
 		default:
-			abort();
+			_system_panic();
 			break;
 	}
 }
@@ -126,7 +127,7 @@ void tim_enable(int timer, bool control)
 			break;
 
 		default:
-			abort();
+			_system_panic();
 			break;
 	}
 }
@@ -152,7 +153,7 @@ void tim_on_off_irq(int timer, bool control)
 			break;
 
 		default:
-			abort();
+			_system_panic();
 			break;
 	}
 }
