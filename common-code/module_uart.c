@@ -110,6 +110,10 @@ FILE *uart_fd(void)
 	if(fd) {
 		/* Do not buffer the serial line */
 		setvbuf(fd, NULL, _IONBF, 0);
+
+		/* work around to clean frist line after reset */
+		_uart_puts("\r");
+
 		return fd;
 	}	
 
