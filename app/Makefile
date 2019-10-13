@@ -6,6 +6,7 @@ CFILES = main.c
 CFILES += api.c \
 	  module_uart.c \
 	  buffer.c \
+	  timers.c \
 	  tools.c
 AFILES += api-asm.S
 

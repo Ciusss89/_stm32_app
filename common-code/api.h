@@ -8,6 +8,8 @@
 
 #include "module_uart.h"
 #include "buffer.h"
+#include "timers.h"
 #include "tools.h"
+
 
 #endif
