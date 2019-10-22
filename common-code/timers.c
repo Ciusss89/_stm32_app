@@ -157,3 +157,39 @@ void tim_on_off_irq(int timer, bool control)
 			break;
 	}
 }
+
+/* !TODO: improve the isr handler */
+
+extern void tim2_isr(void)
+{
+
+	/* put here isr_job */
+
+	/* Clear interrrupt flag. */
+	TIM_SR(TIM2) &= ~TIM_SR_UIF;
+}
+
+
+extern void tim3_isr(void)
+{
+	/* put here isr_job */
+
+	/* Clear interrrupt flag. */
+	TIM_SR(TIM3) &= ~TIM_SR_UIF;
+}
+
+extern void tim4_isr(void)
+{
+	/* put here isr_job */
+
+	/* Clear interrrupt flag. */
+	TIM_SR(TIM4) &= ~TIM_SR_UIF;
+}
+
+extern void tim5_isr(void)
+{
+	/* put here isr_job */
+
+	/* Clear interrrupt flag. */
+	TIM_SR(TIM5) &= ~TIM_SR_UIF;
+}
